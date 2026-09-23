@@ -31,7 +31,7 @@ Pinch — Clean Recipes & Metric Converter
 Pull the clean recipe out of any food blog. Convert to metric, scale to measurable amounts, print or copy. 100% local.
 ```
 
-**Category:** Lifestyle → Food & Drink (or Productivity → Tools)
+**Category:** Lifestyle → Household (fallback: Productivity → Tools)
 
 **Detailed description**
 ```
@@ -79,12 +79,17 @@ Recipes are published on thousands of different websites, so the content script 
 
 - **storage:**
 ```
-Used to pass the selected recipe from the popup to the extension's print page, where it is deleted immediately after being read. No data is synced or sent off the device.
+Used to pass the selected recipe from the popup to the extension's print page, where it is deleted immediately after being read. The code also contains a developer diagnostics log that is off by default and cannot be enabled from the user interface; if a developer turns it on, it stays in local storage. No data is synced or sent off the device.
 ```
 
 - **clipboardWrite:**
 ```
 Used only when the user clicks "Copy as Markdown" to place the formatted recipe on the clipboard. The extension never reads the clipboard.
+```
+
+- **Notes for the reviewer** (optional; use if the dashboard offers a test-instructions or notes field, or when replying to a reviewer question):
+```
+No account or setup is needed. To test: open any recipe page (for example a food blog post with a recipe card), wait for the "Recipe found" note in the top-right corner or click the toolbar icon, and the popup shows the extracted recipe. The Original/Metric toggle converts units, the ¼×–3× buttons scale the recipe, Print opens a printable page, and Copy as Markdown copies the recipe. All processing happens locally in the content script and popup; the extension makes no network requests. Source code: https://github.com/nejc-katlab/pinch
 ```
 
 ---
