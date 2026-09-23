@@ -5,7 +5,8 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
   }
   if (msg.type === 'RECIPE_FOUND') {
     chrome.action.setBadgeText({ tabId: sender.tab.id, text: '✓' });
-    chrome.action.setBadgeBackgroundColor({ tabId: sender.tab.id, color: '#3f7a4e' });
+    chrome.action.setBadgeBackgroundColor({ tabId: sender.tab.id, color: '#cf9f24' });
+    chrome.action.setBadgeTextColor({ tabId: sender.tab.id, color: '#2b2208' });
   }
   if (msg.type === 'OPEN_POPUP') {
     chrome.action.openPopup().catch(() => {});

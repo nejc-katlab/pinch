@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pinch screenshots</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1280px; height: 800px; overflow: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(ellipse at 30% 20%, #f7f2e4, #ebe2cc 70%);
+      color: #2a2620;
+    }
+    .shot { display: none; width: 1280px; height: 800px; position: relative; }
+    .shot.on { display: flex; }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 34px; }
+    .brand img { width: 52px; height: 52px; }
+    .brand span { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 26px; font-weight: 600; }
+    .copy { width: 470px; }
+    h1 {
+      font-family: "Iowan Old Style", Palatino, Georgia, serif;
+      font-size: 46px; line-height: 1.12; font-weight: 600; letter-spacing: -0.01em;
+      text-wrap: balance; margin-bottom: 20px;
+    }
+    .sub { font-size: 19px; line-height: 1.55; color: #5e5647; text-wrap: pretty; }
+    .sub b { color: #7a560c; }
+    .popup {
+      width: 400px; height: 600px; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 30px 60px rgba(92, 66, 10, 0.22), 0 0 0 1px rgba(92, 66, 10, 0.12);
+      background: #f3eee1; flex: 0 0 auto;
+    }
+    .popup iframe { width: 400px; height: 600px; border: 0; display: block; }
+    .row { align-items: center; justify-content: center; gap: 90px; }
+    .label { text-align: center; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #7a560c; margin-bottom: 12px; }
+    .col { display: flex; flex-direction: column; align-items: center; }
+    .stack { flex-direction: column; align-items: center; justify-content: center; }
+    .stack h1 { text-align: center; font-size: 40px; margin-bottom: 8px; }
+    .stack .sub { text-align: center; margin-bottom: 26px; }
+    .callout {
+      position: absolute; background: #2a2620; color: #f3eee1; font-size: 12px; line-height: 1;
+      padding: 7px 10px; border-radius: 7px; white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .callout b { color: #e6c25e; }
+    .callout::before {
+      content: ""; position: absolute; left: 22px; top: -6px; border: 6px solid transparent;
+      border-top: 0; border-bottom-color: #2a2620;
+    }
+    .browser { width: 1100px; height: 560px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(92, 66, 10, 0.2), 0 0 0 1px rgba(92, 66, 10, 0.12); }
+    .bar { height: 46px; background: #ece7db; display: flex; align-items: center; gap: 14px; padding: 0 16px; border-bottom: 1px solid #ddd5c3; }
+    .dots { display: flex; gap: 8px; }
+    .dots i { width: 12px; height: 12px; border-radius: 50%; background: #d9cfbb; display: block; }
+    .url { flex: 1; height: 28px; border-radius: 14px; background: #fbf8f1; font-size: 13px; color: #7d7466; display: flex; align-items: center; padding: 0 14px; }
+    .ext { position: relative; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #e2dccd; }
+    .ext img { width: 18px; height: 18px; }
+    .badge { position: absolute; right: -4px; bottom: -3px; background: #cf9f24; color: #2b2208; font-size: 9px; font-weight: 700; border-radius: 4px; padding: 0 3px; line-height: 13px; }
+    .browser iframe { width: 1100px; height: 514px; border: 0; display: block; }
+    .duo { align-items: center; justify-content: center; gap: 60px; }
+    .sheet { width: 520px; height: 600px; border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(92, 66, 10, 0.2), 0 0 0 1px rgba(92, 66, 10, 0.12); }
+    .sheet iframe { width: 800px; height: 923px; border: 0; transform: scale(0.65); transform-origin: 0 0; }
+    .dark { color-scheme: dark; background: #171b18; }
+  </style>
+</head>
+<body>
+  <section class="shot row" data-shot="1">
+    <div class="copy">
+      <div class="brand"><img src="../../icons/icon128.png" alt=""><span>Pinch</span></div>
+      <h1>The recipe, without the life story.</h1>
+      <p class="sub">Pinch finds the recipe on any food blog and shows just what you need to cook: <b>ingredients, steps and times.</b></p>
+    </div>
+    <div class="popup"><iframe src="../../tests/harness.html?bare=1&system=metric"></iframe></div>
+  </section>
+
+  <section class="shot stack" data-shot="2">
+    <h1>Metric that knows its ingredients</h1>
+    <p class="sub">A cup of flour is 120 g, a cup of sugar 200 g, and °F becomes °C. Anything it can't convert reliably stays as written.</p>
+    <div class="shot-duo" style="display:flex; gap:48px;">
+      <div class="col"><div class="label">Original</div><div class="popup" style="height:470px"><iframe src="../../tests/harness.html?bare=1"></iframe></div></div>
+      <div class="col"><div class="label">Metric</div><div class="popup" style="height:470px"><iframe src="../../tests/harness.html?bare=1&system=metric"></iframe></div></div>
+    </div>
+  </section>
+
+  <section class="shot row" data-shot="3">
+    <div class="copy">
+      <div class="brand"><img src="../../icons/icon128.png" alt=""><span>Pinch</span></div>
+      <h1>Scale down only when you can measure it.</h1>
+      <p class="sub">A quarter batch of crêpes is <b>1 egg and ⅛ tsp salt.</b> A third is switched off, because nobody can measure a third of an egg.</p>
+    </div>
+    <div style="position:relative">
+      <div class="popup"><iframe src="../../tests/harness.html?bare=1&fixture=crepes&factor=1/4"></iframe></div>
+      <div class="callout" style="left:54px; top:213px">⅓× off: <b>4 eggs</b> → 1.33 eggs</div>
+    </div>
+  </section>
+
+  <section class="shot stack" data-shot="4">
+    <h1>Found automatically, on any food blog</h1>
+    <p class="sub">A small note appears when a page has a recipe. One click opens the clean version. Everything runs on your device.</p>
+    <div class="browser">
+      <div class="bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="url">thebutterdiaries.example/brown-butter-cookies</div>
+        <div class="ext"><img src="../../icons/icon32.png" alt=""><span class="badge">✓</span></div>
+      </div>
+      <iframe src="mock-blog.html"></iframe>
+    </div>
+  </section>
+
+  <section class="shot duo" data-shot="5">
+    <div class="sheet"><iframe src="../../tests/print-harness.html"></iframe></div>
+    <div class="col">
+      <div class="copy" style="width:400px; margin-bottom:26px">
+        <h1 style="font-size:38px">Print it, save a PDF, or copy it.</h1>
+        <p class="sub">A clean recipe sheet with checkboxes, Markdown for Notion or Obsidian, and a dark mode for late-night baking.</p>
+      </div>
+      <div class="popup dark" style="height:330px"><iframe class="dark" src="../../tests/harness.html?bare=1"></iframe></div>
+    </div>
+  </section>
+
+  <script>
+    const n = new URLSearchParams(location.search).get('shot') || '1';
+    document.querySelector(`[data-shot="${n}"]`).classList.add('on');
+  </script>
+</body>
+</html>

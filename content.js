@@ -31,11 +31,11 @@
           padding: 8px 10px 8px 14px;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
           font-size: 13px;
-          color: #232a25;
-          background: #fbfaf7;
-          border: 1px solid #e5e3da;
+          color: #2a2620;
+          background: #f3eee1;
+          border: 1px solid #d9d0bb;
           border-radius: 999px;
-          box-shadow: 0 4px 16px rgba(35, 42, 37, 0.16);
+          box-shadow: 0 4px 16px rgba(92, 66, 10, 0.18);
           opacity: 0;
           transform: translateY(-6px);
           animation: rc-in 0.25s ease forwards;
@@ -44,7 +44,7 @@
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: #3f7a4e;
+          background: #cf9f24;
         }
         .open {
           border: none;
@@ -52,8 +52,9 @@
           padding: 5px 12px;
           font: inherit;
           font-weight: 600;
-          background: #3f7a4e;
-          color: #f7faf7;
+          background: #cf9f24;
+          box-shadow: inset 0 0 0 1px #a87c16;
+          color: #2b2208;
           cursor: pointer;
         }
         .open:hover { filter: brightness(1.08); }
@@ -63,7 +64,7 @@
           padding: 2px 4px;
           font-size: 14px;
           line-height: 1;
-          color: #68746c;
+          color: #665d4e;
           cursor: pointer;
         }
         .pill.out {
@@ -78,9 +79,9 @@
             border-color: #2d332c;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
           }
-          .dot { background: #82bd8f; }
-          .open { background: #82bd8f; color: #14201a; }
-          .close { color: #9aa49b; }
+          .dot { background: #e0b43f; }
+          .open { background: #e0b43f; color: #1c1606; box-shadow: none; }
+          .close { color: #a59e90; }
         }
         @media (prefers-reduced-motion: reduce) {
           .pill, .pill.out { animation: none; opacity: 1; transform: none; }

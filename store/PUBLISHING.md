@@ -10,7 +10,7 @@ Fields marked **⚠ TODO** need a value only you can supply. Account setup (deve
 - [x] Final name chosen: **Pinch — Clean Recipes & Metric Converter**
 - [x] Icons added (16/32 px chef hat, 48/128 px full emblem; rebuild with `python3 store/brand/make_icons.py`)
 - [x] `manifest.json` version `1.0.0`
-- [ ] Screenshots ready (1280×800) in `store/screenshots/`
+- [x] Screenshots ready (1280×800, RGB) in `store/screenshots/`; regenerate with `bash store/screenshots/capture.sh`
 - [x] `node tests/test.mjs` and `node tests/corpus.mjs` green
 - [x] `bash store/package.sh` produces `dist/pinch.zip`
 - [ ] Unzipped build loaded via "Load unpacked" and smoke-tested on two or three recipe sites
@@ -108,7 +108,12 @@ https://github.com/nejc-katlab/pinch/blob/main/PRIVACY.md
 ## 5. Graphics
 
 - **Icon 128×128**: `icons/icon128.png`
-- **Screenshots**: at least one 1280×800 PNG from `store/screenshots/`
+- **Screenshots** (upload in this order; the first is the listing's lead image):
+  1. `01-clean-recipe.png` — the clean popup
+  2. `02-metric.png` — Original vs Metric side by side
+  3. `03-measurable-scaling.png` — ¼× crêpes, ⅓× switched off
+  4. `04-auto-detect.png` — the "Recipe found" note on a (fictional) food blog
+  5. `05-print-and-dark.png` — print sheet and dark mode
 - **Small promo tile 440×280**: optional
 
 ---

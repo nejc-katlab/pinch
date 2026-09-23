@@ -1,13 +1,14 @@
 :root {
-  --paper: #fbfaf7;
-  --surface: #f3f1ea;
-  --ink: #232a25;
-  --muted: #68746c;
-  --accent: #3f7a4e;
-  --accent-ink: #2f6540;
-  --on-accent: #f7faf7;
-  --hairline: #e5e3da;
-  --shadow: rgba(35, 42, 37, 0.08);
+  --paper: #f3eee1;
+  --surface: #e9e2d0;
+  --ink: #2a2620;
+  --muted: #665d4e;
+  --accent: #cf9f24;
+  --accent-edge: #a87c16;
+  --accent-ink: #7a560c;
+  --on-accent: #2b2208;
+  --hairline: #d9d0bb;
+  --shadow: rgba(92, 66, 10, 0.14);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,10 +16,11 @@
     --paper: #171b18;
     --surface: #21261f;
     --ink: #e9e7df;
-    --muted: #9aa49b;
-    --accent: #82bd8f;
-    --accent-ink: #9ccda7;
-    --on-accent: #14201a;
+    --muted: #a59e90;
+    --accent: #e0b43f;
+    --accent-edge: transparent;
+    --accent-ink: #e6c25e;
+    --on-accent: #1c1606;
     --hairline: #2d332c;
     --shadow: rgba(0, 0, 0, 0.35);
   }
@@ -165,13 +167,14 @@ h1 {
 
 .group button.active {
   background: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent-edge);
   color: var(--on-accent);
   font-weight: 600;
 }
 
 .group button:focus-visible,
 .copy:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 
@@ -282,11 +285,11 @@ h2 {
 }
 
 .print:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-ink);
 }
 
 .print:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 
@@ -301,7 +304,7 @@ h2 {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px var(--shadow);
+  box-shadow: inset 0 0 0 1px var(--accent-edge), 0 2px 8px var(--shadow);
   transition: filter 0.12s ease;
 }
 
