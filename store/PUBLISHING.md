@@ -8,8 +8,8 @@ Fields marked **⚠ TODO** need a value only you can supply. Account setup (deve
 ## 1. Pre-submit checklist
 
 - [x] Final name chosen: **Pinch — Clean Recipes & Metric Converter**
-- [ ] Icons added at `icons/icon16.png`, `icon32.png`, `icon48.png`, `icon128.png` and wired into `manifest.json`
-- [ ] `manifest.json` version `1.0.0`
+- [x] Icons added (16/32 px chef hat, 48/128 px full emblem; rebuild with `python3 store/brand/make_icons.py`)
+- [x] `manifest.json` version `1.0.0`
 - [ ] Screenshots ready (1280×800) in `store/screenshots/`
 - [ ] `node tests/test.mjs` and `node tests/corpus.mjs` green
 - [ ] `bash store/package.sh` produces `dist/pinch.zip`
