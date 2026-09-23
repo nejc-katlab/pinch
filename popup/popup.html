@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="empty" class="empty hidden">
+    <div class="empty-mark">◌</div>
+    <p class="empty-title" id="empty-title">No recipe here</p>
+    <p class="empty-hint" id="empty-hint">Open a recipe page and the icon will show a ✓ when one is found.</p>
+  </div>
+  <div id="recipe" class="hidden">
+    <header class="head">
+      <p class="eyebrow">Recipe</p>
+      <h1 id="name"></h1>
+      <div id="meta" class="chips"></div>
+      <p id="nutrition" class="nutrition hidden"></p>
+    </header>
+    <div class="controls">
+      <div class="group" id="system">
+        <button data-system="original" class="active">Original</button>
+        <button data-system="metric">Metric</button>
+      </div>
+      <div class="group" id="scale">
+        <button data-factor="1/4">¼×</button>
+        <button data-factor="1/3">⅓×</button>
+        <button data-factor="1/2">½×</button>
+        <button data-factor="1" class="active">1×</button>
+        <button data-factor="2">2×</button>
+        <button data-factor="3">3×</button>
+      </div>
+    </div>
+    <section>
+      <h2>Ingredients</h2>
+      <ul id="ingredients" class="ing"></ul>
+    </section>
+    <section id="steps-section">
+      <h2>Instructions</h2>
+      <ol id="steps" class="steps"></ol>
+    </section>
+    <footer class="foot">
+      <button id="copy" class="copy">Copy as Markdown</button>
+      <button id="print" class="print">Print</button>
+    </footer>
+  </div>
+  <p id="log-status" class="log hidden"><span id="log-count"></span> · <a href="#" id="log-export">Export log</a></p>
+  <script src="../lib/parser.js"></script>
+  <script src="../lib/convert.js"></script>
+  <script src="../lib/extractor.js"></script>
+  <script src="../lib/markdown.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

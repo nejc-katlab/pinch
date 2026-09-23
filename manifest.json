@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Recipe Converter",
+  "version": "1.0.0",
+  "description": "Pull the clean recipe out of any food blog. Convert to metric, scale to measurable amounts, print or copy. 100% local.",
+  "minimum_chrome_version": "127",
+  "permissions": [
+    "clipboardWrite",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Recipe Converter"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "lib/parser.js",
+        "lib/convert.js",
+        "lib/extractor.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

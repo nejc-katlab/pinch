@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Print recipe</title>
+  <link rel="stylesheet" href="print.css">
+</head>
+<body>
+  <div class="toolbar">
+    <button id="print-btn">Print / Save as PDF</button>
+  </div>
+  <article>
+    <p class="eyebrow">Recipe</p>
+    <h1 id="name"></h1>
+    <p id="meta" class="meta"></p>
+    <p id="nutrition" class="nutrition hidden"></p>
+    <section>
+      <h2>Ingredients</h2>
+      <ul id="ingredients" class="ing"></ul>
+    </section>
+    <section id="steps-section">
+      <h2>Instructions</h2>
+      <ol id="steps" class="steps"></ol>
+    </section>
+    <p id="source" class="source hidden"></p>
+  </article>
+  <script src="../lib/parser.js"></script>
+  <script src="../lib/convert.js"></script>
+  <script src="../lib/extractor.js"></script>
+  <script src="../lib/markdown.js"></script>
+  <script src="print.js"></script>
+</body>
+</html>
