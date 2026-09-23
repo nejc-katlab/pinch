@@ -1,4 +1,4 @@
-# Publishing Recipe Converter to the Chrome Web Store
+# Publishing Pinch to the Chrome Web Store
 
 Everything needed for submission. Copy the text straight into the Developer Dashboard.
 Fields marked **⚠ TODO** need a value only you can supply. Account setup (developer fee, verified contact email) is already done from Gentle Focus.
@@ -7,12 +7,12 @@ Fields marked **⚠ TODO** need a value only you can supply. Account setup (deve
 
 ## 1. Pre-submit checklist
 
-- [ ] **⚠ TODO** Final name chosen (see §2 — "Recipe Converter" is crowded on the store); update `manifest.json`, `README.md`, `PRIVACY.md`
+- [x] Final name chosen: **Pinch — Clean Recipes & Metric Converter**
 - [ ] Icons added at `icons/icon16.png`, `icon32.png`, `icon48.png`, `icon128.png` and wired into `manifest.json`
 - [ ] `manifest.json` version `1.0.0`
 - [ ] Screenshots ready (1280×800) in `store/screenshots/`
 - [ ] `node tests/test.mjs` and `node tests/corpus.mjs` green
-- [ ] `bash store/package.sh` produces `dist/recipe-converter.zip`
+- [ ] `bash store/package.sh` produces `dist/pinch.zip`
 - [ ] Unzipped build loaded via "Load unpacked" and smoke-tested on two or three recipe sites
 - [ ] Field logging confirmed off in a fresh profile (popup shows no "Field log" footer)
 - [ ] Repo public on GitHub, `PRIVACY.md` reachable at its public URL
@@ -21,9 +21,9 @@ Fields marked **⚠ TODO** need a value only you can supply. Account setup (deve
 
 ## 2. Store listing copy
 
-**Name** (≤ 45 chars) — **⚠ TODO** pick one. "Recipe Converter" already appears in two listing titles ("Eggcellent - Recipe Converter", "Drizzlelemons — Ad-Free Recipe Converter"). A distinct brand plus a descriptive suffix works well, e.g.:
+**Name** (≤ 45 chars, currently 40; this is the manifest `name`, which the store uses as the listing title)
 ```
-Sprig — Clean Recipes & Metric Converter
+Pinch — Clean Recipes & Metric Converter
 ```
 
 **Summary / short description** (≤ 132 chars, currently 118)
@@ -100,7 +100,7 @@ On the "Data usage" form:
 
 **Privacy policy URL:** once the repo is public,
 ```
-https://github.com/nejc-katlab/recipe-converter/blob/main/PRIVACY.md
+https://github.com/nejc-katlab/pinch/blob/main/PRIVACY.md
 ```
 
 ---
@@ -115,7 +115,7 @@ https://github.com/nejc-katlab/recipe-converter/blob/main/PRIVACY.md
 
 ## 6. Submit (you)
 
-1. Dashboard → **Add new item** → upload `dist/recipe-converter.zip`
+1. Dashboard → **Add new item** → upload `dist/pinch.zip`
 2. Paste the copy from §2 and the justifications from §3
 3. Fill in the data-usage form per §4 and add the privacy-policy URL
 4. Upload the icon and screenshots

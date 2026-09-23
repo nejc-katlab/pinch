@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Recipe Converter",
+  "name": "Pinch — Clean Recipes & Metric Converter",
+  "short_name": "Pinch",
   "version": "1.0.0",
   "description": "Pull the clean recipe out of any food blog. Convert to metric, scale to measurable amounts, print or copy. 100% local.",
   "minimum_chrome_version": "127",
@@ -13,7 +14,7 @@
   },
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Recipe Converter"
+    "default_title": "Pinch"
   },
   "content_scripts": [
     {

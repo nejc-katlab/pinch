@@ -1,4 +1,4 @@
-# Recipe Converter — Roadmap
+# Pinch — Roadmap
 
 Status key: ✅ done · 🔄 in progress · ⬜ planned · 🔒 gated on evidence/decision
 

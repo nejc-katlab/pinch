@@ -1,8 +1,8 @@
-# Recipe Converter — Privacy Policy
+# Pinch — Privacy Policy
 
 _Last updated: 23 September 2026_
 
-**Short version: Recipe Converter collects nothing, sends nothing, and has no servers. Recipes are read and converted entirely in your browser, on your device.**
+**Short version: Pinch collects nothing, sends nothing, and has no servers. Recipes are read and converted entirely in your browser, on your device.**
 
 ## What we collect
 
@@ -39,7 +39,7 @@ The extension uses `chrome.storage.local` only for short-lived working data, and
 ## Contact
 
 Questions or concerns? Please open an issue:
-https://github.com/nejc-katlab/recipe-converter/issues
+https://github.com/nejc-katlab/pinch/issues
 
 ## Changes
 

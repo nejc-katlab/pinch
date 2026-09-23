@@ -12,11 +12,11 @@ done
 rm -rf dist
 mkdir -p dist
 
-zip -r -q dist/recipe-converter.zip \
+zip -r -q dist/pinch.zip \
   manifest.json background.js content.js \
   lib popup print icons \
   -x '*/.DS_Store' -x 'icons/icon512.png'
 
-echo "Built dist/recipe-converter.zip"
+echo "Built dist/pinch.zip"
 echo "Contents:"
-unzip -l dist/recipe-converter.zip | awk 'NR>3 {print $4}' | sed '/^$/d'
+unzip -l dist/pinch.zip | awk 'NR>3 {print $4}' | sed '/^$/d'

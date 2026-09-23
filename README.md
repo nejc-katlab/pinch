@@ -1,4 +1,4 @@
-# Recipe Converter
+# Pinch
 
 A Chrome extension that pulls the clean recipe out of any food blog, converts it to metric, scales it to amounts you can actually measure, and lets you print it or copy it as Markdown. Everything runs locally. The extension makes no network requests.
 

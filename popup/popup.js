@@ -152,7 +152,7 @@
         { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'recipe-converter-log.json';
+      a.download = 'pinch-log.json';
       a.click();
       URL.revokeObjectURL(a.href);
     });
