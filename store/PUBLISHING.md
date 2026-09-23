@@ -11,11 +11,11 @@ Fields marked **⚠ TODO** need a value only you can supply. Account setup (deve
 - [x] Icons added (16/32 px chef hat, 48/128 px full emblem; rebuild with `python3 store/brand/make_icons.py`)
 - [x] `manifest.json` version `1.0.0`
 - [ ] Screenshots ready (1280×800) in `store/screenshots/`
-- [ ] `node tests/test.mjs` and `node tests/corpus.mjs` green
-- [ ] `bash store/package.sh` produces `dist/pinch.zip`
+- [x] `node tests/test.mjs` and `node tests/corpus.mjs` green
+- [x] `bash store/package.sh` produces `dist/pinch.zip`
 - [ ] Unzipped build loaded via "Load unpacked" and smoke-tested on two or three recipe sites
 - [ ] Field logging confirmed off in a fresh profile (popup shows no "Field log" footer)
-- [ ] Repo public on GitHub, `PRIVACY.md` reachable at its public URL
+- [x] Repo public on GitHub, `PRIVACY.md` reachable at its public URL
 
 ---
 
