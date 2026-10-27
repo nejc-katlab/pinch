@@ -5,14 +5,14 @@ cd "$(dirname "$0")/../.."
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PORT=8799
 OUT=store/screenshots
-NAMES=(01-clean-recipe 02-metric 03-measurable-scaling 04-auto-detect 05-print-and-dark)
+NAMES=(01-clean-recipe 02-metric 03-measurable-scaling 04-auto-detect 05-print-and-dark 06-cook-mode)
 
 python3 -m http.server "$PORT" >/dev/null 2>&1 &
 SERVER=$!
 trap 'kill $SERVER 2>/dev/null' EXIT
 sleep 1
 
-for n in 1 2 3 4 5; do
+for n in 1 2 3 4 5 6; do
   SCHEME=1
   [ "$n" = "5" ] && SCHEME=0
   PROFILE=$(mktemp -d)

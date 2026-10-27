@@ -59,6 +59,7 @@
     .sheet { width: 520px; height: 600px; border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(92, 66, 10, 0.2), 0 0 0 1px rgba(92, 66, 10, 0.12); }
     .sheet iframe { width: 800px; height: 923px; border: 0; transform: scale(0.65); transform-origin: 0 0; }
     .dark { color-scheme: dark; background: #171b18; }
+    .browser .cook { width: 1375px; height: 642px; transform: scale(0.8); transform-origin: 0 0; }
   </style>
 </head>
 <body>
@@ -72,10 +73,10 @@
   </section>
 
   <section class="shot stack" data-shot="2">
-    <h1>Metric that knows its ingredients</h1>
-    <p class="sub">A cup of flour is 120 g, a cup of sugar 200 g, and °F becomes °C. Anything it can't convert reliably stays as written.</p>
+    <h1>Imperial or metric, every line</h1>
+    <p class="sub">A cup of flour is 120 g, a tablespoon of butter 14 g, 350°F is 175°C, and back again. Anything it can't convert reliably stays as written.</p>
     <div class="shot-duo" style="display:flex; gap:48px;">
-      <div class="col"><div class="label">Original</div><div class="popup" style="height:470px"><iframe src="../../tests/harness.html?bare=1"></iframe></div></div>
+      <div class="col"><div class="label">Imperial</div><div class="popup" style="height:470px"><iframe src="../../tests/harness.html?bare=1&system=imperial"></iframe></div></div>
       <div class="col"><div class="label">Metric</div><div class="popup" style="height:470px"><iframe src="../../tests/harness.html?bare=1&system=metric"></iframe></div></div>
     </div>
   </section>
@@ -113,6 +114,18 @@
         <p class="sub">A clean recipe sheet with checkboxes, Markdown for Notion or Obsidian, and a dark mode for late-night baking.</p>
       </div>
       <div class="popup dark" style="height:330px"><iframe class="dark" src="../../tests/harness.html?bare=1"></iframe></div>
+    </div>
+  </section>
+
+  <section class="shot stack" data-shot="6">
+    <h1>Cook mode, with timers that follow you</h1>
+    <p class="sub">One step at a time, ingredients to tick off, and a one-tap timer for every time in a step. It floats above your other tabs and chimes when it's done.</p>
+    <div class="browser">
+      <div class="bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="url">Pinch · Cook mode</div>
+      </div>
+      <iframe class="cook" src="../../tests/cook-harness.html?demo=1"></iframe>
     </div>
   </section>
 

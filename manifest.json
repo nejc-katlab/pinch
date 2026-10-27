@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Pinch — Clean Recipes & Metric Converter",
   "short_name": "Pinch",
-  "version": "1.0.0",
-  "description": "Pull the clean recipe out of any food blog. Convert to metric, scale to measurable amounts, print or copy. 100% local.",
+  "version": "1.1.0",
+  "description": "Pull the clean recipe out of any food blog. Imperial or metric, measurable scaling, cook mode with timers, saved recipes. All local.",
   "minimum_chrome_version": "127",
   "icons": {
     "16": "icons/icon16.png",

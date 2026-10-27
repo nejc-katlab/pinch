@@ -1,6 +1,6 @@
 # Pinch — Privacy Policy
 
-_Last updated: 23 September 2026_
+_Last updated: 27 October 2026_
 
 **Short version: Pinch collects nothing, sends nothing, and has no servers. Recipes are read and converted entirely in your browser, on your device.**
 
@@ -14,9 +14,12 @@ To find a recipe, the extension looks at the structured recipe data that recipe 
 
 ## What is stored on your device
 
-The extension uses `chrome.storage.local` only for short-lived working data, and nothing in it ever leaves your device:
+The extension uses `chrome.storage.local` for the following, and nothing in it ever leaves your device:
 
-- When you press **Print**, the recipe you are printing is handed to the print page through local storage and deleted as soon as that page opens.
+- **Saved recipes:** when you press **Save**, that recipe (its name, ingredients, steps, times and the address of the page it came from) is kept on your device so you can open it again from **Saved recipes**. It stays until you remove it or uninstall the extension.
+- **Cook mode:** the recipe you last opened in Cook mode, with your chosen units and scale, so the page survives a reload.
+- **Timers:** each running timer's label, recipe name and end time, so it keeps counting when you close the popup or switch tabs. A timer is removed when you dismiss or cancel it.
+- **Print:** the recipe you are printing is handed to the print page and deleted as soon as that page opens.
 - A developer diagnostics mode exists for testing conversion accuracy. It is **off by default** and cannot be switched on from the extension's interface. Only if a developer deliberately enables it does it keep a local log of detected recipe pages (their URLs and how each ingredient line was converted). That log stays on the device and is never transmitted.
 
 ## What we do not do
@@ -26,6 +29,10 @@ The extension uses `chrome.storage.local` only for short-lived working data, and
 - We do not use analytics, telemetry, tracking, cookies, or advertising.
 - We do not sell or share data with anyone.
 
+## Notifications
+
+Pinch asks for permission to show notifications the first time you start a timer. If you allow it, the only notification it ever shows is "Time's up" when one of your timers finishes. If you decline, timers still work inside Cook mode. You can change this at any time in Chrome's extension settings.
+
 ## Clipboard
 
 **Copy as Markdown** writes the recipe to your clipboard only when you press the button. The extension never reads your clipboard.
@@ -33,7 +40,9 @@ The extension uses `chrome.storage.local` only for short-lived working data, and
 ## Permissions
 
 - **Access to web pages (content script on http/https sites):** needed to detect recipes on whatever recipe site you visit. Used only to read recipe content locally, never to collect or transmit it.
-- **storage:** hands a recipe to the print page and keeps local working data as described above.
+- **storage:** keeps saved recipes, the Cook mode recipe, running timers and print hand-offs on your device, as described above.
+- **alarms:** lets a timer finish on time even when the popup and Cook mode are closed.
+- **notifications (optional, asked for when you first start a timer):** shows "Time's up" when a timer finishes.
 - **clipboardWrite:** lets the Copy button place the recipe on your clipboard.
 
 ## Contact

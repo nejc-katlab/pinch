@@ -12,6 +12,14 @@ Status key: ✅ done · 🔄 in progress · ⬜ planned · 🔒 gated on evidenc
 - ✅ Popup UI (light/dark), in-page detection pill + badge, print / save-as-PDF sheet, copy-as-Markdown
 - ✅ Test infrastructure: unit + auto-generated collision suite, golden corpus, live-page audit, sitemap crawler (1000-recipe battle test), field-log telemetry with export
 
+## Shipped (1.1)
+
+- ✅ Cook mode: full-page reader, checkable ingredients, step-by-step focus, screen wake-lock, unit and scale controls, Save / Copy as Markdown / Print
+- ✅ Step-duration timers: durations detected in step text, one-tap timers that survive closing the tab (alarms + optional notification), Picture-in-Picture timer window with "Back to recipe", scheduled chime
+- ✅ Saved recipes: local library with search, reachable from the popup and Cook mode (chrome.storage.local; sync's ~100 KB quota is too small for a library)
+- ✅ Imperial/Metric toggle replaces Original/Metric: recipe opens in its dominant system, every line converts both ways, tbsp/tsp convert in metric, °C↔°F
+- ✅ Tasty Recipes ingredient groups; temperatures in ingredient lines; bare "350 degrees" / ℉ / º handled
+
 ## Now — validation loop
 
 - 🔄 Continue field test drive; export and analyze the log periodically; fold every miss into `tests/corpus.json`
@@ -21,21 +29,20 @@ Status key: ✅ done · 🔄 in progress · ⬜ planned · 🔒 gated on evidenc
 ## Store readiness (v1 release)
 
 - ✅ Gate field logging behind an off-by-default developer toggle
-- ⬜ Extension icons (required for listing)
-- ⬜ Name check on the Chrome Web Store; keep the name/icon as the brand
-- ⬜ Privacy policy page ("all processing is local, no data collected")
-- ⬜ Screenshots and listing copy; developer registration
+- ✅ Extension icons (required for listing)
+- ✅ Name check on the Chrome Web Store; keep the name/icon as the brand
+- ✅ Privacy policy page ("all processing is local, no data collected")
+- ✅ Screenshots and listing copy; developer registration
 - ⬜ Publish unlisted first, self-install from the store for a week, then go public
 - ⬜ Pill design refinements (size, icon, expand-on-hover) as desired
 
 ## v1.5 — features in order of value
 
-- ⬜ **Cook mode**: full-page reader view, checkable ingredients, step-by-step focus, screen wake-lock
-  - ⬜ **Step-duration timers**: detect durations in instruction text ("chill for at least 1 hour", "bake for 11–12 minutes", "rest 10 minutes") and offer tap-to-start timers per step; surface rest/chill time that lives only in the prose and not in the prep/cook metadata
-- ⬜ Save/library: local storage of extracted recipes with search (chrome.storage sync)
+- ⬜ Surface rest/chill time that lives only in step prose (not in the prep/cook metadata) as a total "hands-off time" in the header
+- ⬜ Saved-recipe export/import (JSON) so a library survives a new machine without cloud sync
 - ⬜ Grocery export adapters behind one interface: Things URL scheme, Todoist, Notion API (internal-integration token first, OAuth later)
 - ⬜ Multi-recipe merged grocery list (sum shared ingredients across selected saved recipes)
-- ⬜ Ingredient groups for more recipe plugins (Tasty Recipes, Create, others as the field log reveals them)
+- ⬜ Ingredient groups for more recipe plugins (Create, others as the field log reveals them); WPRM and Tasty Recipes done
 - ⬜ QR code linking to the source on the print sheet
 
 ## Translation & i18n
