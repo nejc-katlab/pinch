@@ -38,17 +38,36 @@
       nutrition: { calories: 270, fat: 13, carbs: 34, protein: 4, servingSize: '1 cookie' },
       source: 'https://example.com/cookies'
     };
-    window.chrome = {
-      storage: {
-        local: {
-          get: async () => ({
-            log: [{ url: 'https://example.com/a' }, { url: 'https://example.com/b' }],
-            misses: [{ url: 'https://example.com/c' }],
-            devLogging: true
-          })
-        }
-      }
-    };
+    (function () {
+      const store = {
+        log: [{ url: 'https://example.com/a' }, { url: 'https://example.com/b' }],
+        misses: [{ url: 'https://example.com/c' }],
+        devLogging: true
+      };
+      const listeners = [];
+      window.chrome = {
+        storage: {
+          local: {
+            get: async keys => {
+              if (!keys || Array.isArray(keys) || typeof keys === 'string') return { ...store };
+              const out = { ...keys };
+              for (const k of Object.keys(keys)) if (k in store) out[k] = store[k];
+              return out;
+            },
+            set: async items => {
+              const changes = {};
+              for (const [k, v] of Object.entries(items)) {
+                changes[k] = { oldValue: store[k], newValue: v };
+                store[k] = v;
+              }
+              for (const cb of listeners) cb(changes, 'local');
+            }
+          },
+          onChanged: { addListener: cb => listeners.push(cb) }
+        },
+        alarms: { create: () => {}, clear: () => {} }
+      };
+    })();
     window.__copied = null;
     Object.defineProperty(navigator, 'clipboard', {
       value: { writeText: t => { window.__copied = t; return Promise.resolve(); } }
@@ -92,6 +111,9 @@
   </script>
 </head>
 <body>
+  <nav class="topbar">
+    <button id="saved-link" class="link">Saved recipes<span id="saved-count" class="count"></span></button>
+  </nav>
   <div id="empty" class="empty hidden">
     <div class="empty-mark">◌</div>
     <p class="empty-title" id="empty-title">No recipe here</p>
@@ -99,14 +121,17 @@
   </div>
   <div id="recipe" class="hidden">
     <header class="head">
-      <p class="eyebrow">Recipe</p>
+      <div class="head-row">
+        <p class="eyebrow">Recipe</p>
+        <button id="save" class="save">Save</button>
+      </div>
       <h1 id="name"></h1>
       <div id="meta" class="chips"></div>
       <p id="nutrition" class="nutrition hidden"></p>
     </header>
     <div class="controls">
       <div class="group" id="system">
-        <button data-system="original" class="active">Original</button>
+        <button data-system="imperial">Imperial</button>
         <button data-system="metric">Metric</button>
       </div>
       <div class="group" id="scale">
@@ -129,12 +154,23 @@
     <footer class="foot">
       <button id="copy" class="copy">Copy as Markdown</button>
       <button id="print" class="print">Print</button>
+      <button id="cook" class="print">Cook</button>
     </footer>
+  </div>
+  <div id="library" class="library hidden">
+    <header class="lib-head">
+      <button id="lib-back" class="link">Back</button>
+      <h1>Saved recipes</h1>
+    </header>
+    <input id="lib-search" class="search" type="search" placeholder="Search by name or ingredient">
+    <ul id="lib-list" class="lib-list"></ul>
+    <p id="lib-empty" class="lib-empty hidden"></p>
   </div>
   <p id="log-status" class="log hidden"><span id="log-count"></span> · <a href="#" id="log-export">Export log</a></p>
   <script src="../lib/parser.js"></script>
   <script src="../lib/convert.js"></script>
   <script src="../lib/extractor.js"></script>
+  <script src="../lib/library.js"></script>
   <script src="../lib/markdown.js"></script>
   <script src="../popup/popup.js"></script>
   <script>
@@ -142,7 +178,8 @@
       const params = new URLSearchParams(location.search);
       const system = params.get('system');
       const factor = params.get('factor');
-      if (system) document.querySelector(`#system [data-system="${system}"]`).click();
+      const systemBtn = system && document.querySelector(`#system [data-system="${system}"]`);
+      if (systemBtn) systemBtn.click();
       if (factor) document.querySelector(`#scale [data-factor="${factor}"]`).click();
       if (document.activeElement) document.activeElement.blur();
     })();

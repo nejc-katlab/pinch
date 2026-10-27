@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cook mode</title>
+  <link rel="stylesheet" href="cook.css">
+</head>
+<body>
+  <div id="empty" class="empty hidden">
+    <p>Nothing to cook yet. Open a recipe and use the Cook button, or pick one you saved.</p>
+    <button id="empty-library" class="action">Saved recipes</button>
+  </div>
+  <div id="app" class="hidden">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Cook mode</p>
+        <h1 id="name"></h1>
+        <p id="meta" class="meta"></p>
+        <div class="controls">
+          <div class="group" id="system">
+            <button data-system="imperial">Imperial</button>
+            <button data-system="metric">Metric</button>
+          </div>
+          <div class="group" id="scale">
+            <button data-factor="1/4">¼×</button>
+            <button data-factor="1/3">⅓×</button>
+            <button data-factor="1/2">½×</button>
+            <button data-factor="1">1×</button>
+            <button data-factor="2">2×</button>
+            <button data-factor="3">3×</button>
+          </div>
+        </div>
+      </div>
+      <div class="top-side">
+        <div class="actions">
+          <button id="save" class="action">Save</button>
+          <button id="copy" class="action">Copy as Markdown</button>
+          <button id="print" class="action">Print</button>
+          <button id="library-open" class="action">Saved recipes<span id="saved-count" class="count"></span></button>
+        </div>
+        <span id="awake" class="awake hidden">Screen stays on</span>
+      </div>
+    </header>
+    <main class="layout">
+      <aside class="panel">
+        <h2>Ingredients <span id="ing-count" class="count"></span></h2>
+        <ul id="ingredients" class="ing"></ul>
+      </aside>
+      <section class="focus">
+        <p id="step-count" class="step-count"></p>
+        <p id="step-text" class="step-text"></p>
+        <div id="step-timers" class="step-timers"></div>
+        <div class="nav">
+          <button id="prev" class="ghost">Previous</button>
+          <button id="next" class="primary">Next step</button>
+        </div>
+        <p class="keys">Arrow keys or space to move between steps</p>
+        <ol id="overview" class="overview"></ol>
+      </section>
+    </main>
+  </div>
+  <div id="drawer" class="drawer hidden" role="dialog" aria-label="Saved recipes">
+    <div class="drawer-panel">
+      <header class="drawer-head">
+        <h2>Saved recipes</h2>
+        <button id="library-close" class="action">Close</button>
+      </header>
+      <input id="lib-search" class="search" type="search" placeholder="Search by name or ingredient">
+      <ul id="lib-list" class="lib-list"></ul>
+      <p id="lib-empty" class="lib-empty hidden"></p>
+    </div>
+  </div>
+  <div id="dock" class="dock"></div>
+  <script src="../lib/parser.js"></script>
+  <script src="../lib/convert.js"></script>
+  <script src="../lib/extractor.js"></script>
+  <script src="../lib/timers.js"></script>
+  <script src="../lib/library.js"></script>
+  <script src="../lib/markdown.js"></script>
+  <script src="cook.js"></script>
+</body>
+</html>

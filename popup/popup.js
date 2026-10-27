@@ -1,5 +1,5 @@
 (function () {
-  const state = { recipe: null, system: 'original', factor: 1 };
+  const state = { recipe: null, system: 'metric', factor: 1 };
 
   function el(id) {
     return document.getElementById(id);
@@ -126,6 +126,88 @@
     chrome.tabs.create({ url: chrome.runtime.getURL('print/print.html') });
   });
 
+  async function openCook(recipe, system, factor) {
+    if (typeof chrome === 'undefined' || !chrome.tabs) return;
+    await chrome.storage.local.set({ cookJob: { recipe, system, factor } });
+    chrome.tabs.create({ url: chrome.runtime.getURL('cook/cook.html') });
+  }
+
+  el('cook').addEventListener('click', () => openCook(state.recipe, state.system, state.factor));
+
+  async function renderSaveButton() {
+    if (!state.recipe) return;
+    const saved = await RC.library.isSaved(state.recipe);
+    el('save').textContent = saved ? 'Saved' : 'Save';
+    el('save').classList.toggle('active', saved);
+    el('save').title = saved ? 'Remove from saved recipes' : 'Save to your recipes';
+  }
+
+  el('save').addEventListener('click', async () => {
+    await RC.library.toggle(state.recipe);
+    renderSaveButton();
+  });
+
+  function formatDate(ms) {
+    return new Date(ms).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  async function renderLibrary() {
+    const saved = await RC.library.list();
+    el('saved-count').textContent = saved.length ? ` (${saved.length})` : '';
+    if (el('library').classList.contains('hidden')) return;
+    const query = el('lib-search').value;
+    const shown = saved.filter(e => RC.library.matches(e, query));
+    el('lib-search').classList.toggle('hidden', saved.length < 2);
+    const list = el('lib-list');
+    list.textContent = '';
+    for (const entry of shown) {
+      const li = document.createElement('li');
+      const open = document.createElement('button');
+      open.className = 'lib-open';
+      open.title = 'Open in Cook mode';
+      const name = document.createElement('span');
+      name.className = 'lib-name';
+      name.textContent = entry.recipe.name;
+      const meta = document.createElement('span');
+      meta.className = 'lib-meta';
+      meta.textContent = [RC.library.host(entry.recipe.source), `saved ${formatDate(entry.savedAt)}`].filter(Boolean).join(' · ');
+      open.append(name, meta);
+      open.addEventListener('click', () => openCook(entry.recipe, RC.dominantSystem(entry.recipe.ingredients), 1));
+      const remove = document.createElement('button');
+      remove.className = 'lib-remove';
+      remove.setAttribute('aria-label', `Remove ${entry.recipe.name}`);
+      remove.title = 'Remove';
+      remove.textContent = '×';
+      remove.addEventListener('click', () => RC.library.remove(entry.id));
+      li.append(open, remove);
+      list.appendChild(li);
+    }
+    const empty = el('lib-empty');
+    empty.classList.toggle('hidden', shown.length > 0);
+    empty.textContent = saved.length
+      ? 'No saved recipes match that search.'
+      : 'Nothing saved yet. Open a recipe and press Save to keep it here.';
+  }
+
+  let returnTo = null;
+
+  el('saved-link').addEventListener('click', () => {
+    returnTo = ['recipe', 'empty'].find(id => !el(id).classList.contains('hidden')) || null;
+    for (const id of ['recipe', 'empty']) el(id).classList.add('hidden');
+    el('saved-link').classList.add('hidden');
+    el('library').classList.remove('hidden');
+    el('lib-search').value = '';
+    renderLibrary();
+  });
+
+  el('lib-back').addEventListener('click', () => {
+    el('library').classList.add('hidden');
+    el('saved-link').classList.remove('hidden');
+    if (returnTo) el(returnTo).classList.remove('hidden');
+  });
+
+  el('lib-search').addEventListener('input', renderLibrary);
+
   el('copy').addEventListener('click', async () => {
     const md = RC.toMarkdown(state.recipe, { system: state.system, factor: state.factor });
     try {
@@ -161,9 +243,14 @@
   function show(recipe) {
     if (recipe) {
       state.recipe = recipe;
+      state.system = RC.dominantSystem(recipe.ingredients);
+      for (const b of el('system').querySelectorAll('button')) {
+        b.classList.toggle('active', b.dataset.system === state.system);
+      }
       el('recipe').classList.remove('hidden');
       updateScaleAvailability();
       render();
+      renderSaveButton();
     } else {
       el('empty').classList.remove('hidden');
     }
@@ -190,4 +277,9 @@
 
   init();
   initLog();
+  renderLibrary();
+  RC.library.onChange(() => {
+    renderLibrary();
+    renderSaveButton();
+  });
 })();

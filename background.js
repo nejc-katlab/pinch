@@ -28,3 +28,45 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
     });
   }
 });
+
+chrome.alarms.onAlarm.addListener(async alarm => {
+  if (!alarm.name.startsWith('timer:') || !chrome.notifications) return;
+  const id = alarm.name.slice(6);
+  const { timers = [] } = await chrome.storage.local.get({ timers: [] });
+  const timer = timers.find(t => t.id === id);
+  if (!timer) return;
+  chrome.notifications.create(alarm.name, {
+    type: 'basic',
+    iconUrl: 'icons/icon128.png',
+    title: `Time's up: ${timer.label}`,
+    message: timer.recipe || 'Pinch timer',
+    priority: 2,
+    requireInteraction: true
+  });
+});
+
+async function dismissTimer(notificationId, focus) {
+  if (!notificationId.startsWith('timer:')) return;
+  const id = notificationId.slice(6);
+  const { timers = [] } = await chrome.storage.local.get({ timers: [] });
+  const timer = timers.find(t => t.id === id);
+  chrome.storage.local.set({ timers: timers.filter(t => t.id !== id) });
+  chrome.notifications.clear(notificationId);
+  if (!focus || !timer || timer.tabId == null) return;
+  try {
+    const tab = await chrome.tabs.update(timer.tabId, { active: true });
+    chrome.windows.update(tab.windowId, { focused: true });
+  } catch (e) {}
+}
+
+let notificationsBound = false;
+
+function bindNotifications() {
+  if (notificationsBound || !chrome.notifications) return;
+  notificationsBound = true;
+  chrome.notifications.onClicked.addListener(id => dismissTimer(id, true));
+  chrome.notifications.onClosed.addListener(id => dismissTimer(id, false));
+}
+
+bindNotifications();
+chrome.permissions.onAdded.addListener(bindNotifications);

@@ -14,7 +14,7 @@ mkdir -p dist
 
 zip -r -q dist/pinch.zip \
   manifest.json background.js content.js \
-  lib popup print icons \
+  lib popup print cook icons \
   -x '*/.DS_Store' -x 'icons/icon512.png'
 
 echo "Built dist/pinch.zip"

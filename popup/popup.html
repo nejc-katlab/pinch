@@ -5,6 +5,9 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+  <nav class="topbar">
+    <button id="saved-link" class="link">Saved recipes<span id="saved-count" class="count"></span></button>
+  </nav>
   <div id="empty" class="empty hidden">
     <div class="empty-mark">◌</div>
     <p class="empty-title" id="empty-title">No recipe here</p>
@@ -12,14 +15,17 @@
   </div>
   <div id="recipe" class="hidden">
     <header class="head">
-      <p class="eyebrow">Recipe</p>
+      <div class="head-row">
+        <p class="eyebrow">Recipe</p>
+        <button id="save" class="save">Save</button>
+      </div>
       <h1 id="name"></h1>
       <div id="meta" class="chips"></div>
       <p id="nutrition" class="nutrition hidden"></p>
     </header>
     <div class="controls">
       <div class="group" id="system">
-        <button data-system="original" class="active">Original</button>
+        <button data-system="imperial">Imperial</button>
         <button data-system="metric">Metric</button>
       </div>
       <div class="group" id="scale">
@@ -42,12 +48,23 @@
     <footer class="foot">
       <button id="copy" class="copy">Copy as Markdown</button>
       <button id="print" class="print">Print</button>
+      <button id="cook" class="print">Cook</button>
     </footer>
+  </div>
+  <div id="library" class="library hidden">
+    <header class="lib-head">
+      <button id="lib-back" class="link">Back</button>
+      <h1>Saved recipes</h1>
+    </header>
+    <input id="lib-search" class="search" type="search" placeholder="Search by name or ingredient">
+    <ul id="lib-list" class="lib-list"></ul>
+    <p id="lib-empty" class="lib-empty hidden"></p>
   </div>
   <p id="log-status" class="log hidden"><span id="log-count"></span> · <a href="#" id="log-export">Export log</a></p>
   <script src="../lib/parser.js"></script>
   <script src="../lib/convert.js"></script>
   <script src="../lib/extractor.js"></script>
+  <script src="../lib/library.js"></script>
   <script src="../lib/markdown.js"></script>
   <script src="popup.js"></script>
 </body>
